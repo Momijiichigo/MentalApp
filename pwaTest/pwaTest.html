@@ -1,6 +1,24 @@
 <html>
     <head>
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet"  type="text/css" href="main.css">
+        <link rel="manifest" href="manifest.json">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').then(function() {
+
+
+                    console.log('sucsessed');
+
+
+                }).catch(function(err) {
+
+
+                    console.log('error:', err);
+
+
+                });
+            }
+        </script>
         <title>PWA Test Page</title>
     </head>
     <body>
