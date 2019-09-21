@@ -15,22 +15,30 @@ self.addEventListener('install', function(event) {
 });
 self.addEventListener('activate', function(event) {  
     event.waitUntil(
-      caches.keys().then(function(cache) {
-        cache.map(function(name) {
-          if(CACHE_NAME !== name) caches.delete(name);
-        })
-      })
+        caches.keys().then((keyList) => {
+            return Promise.all(keyList.map((key) => {
+              if (key !== CACHE_NAME) {
+                console.log('[ServiceWorker] Removing old cache', key);
+                return caches.delete(key);
+              }
+            }));
+          })
       
     );
   });
-  self.addEventListener('fetch', function(event) {
-    event.respondWith(
-      
-      caches.match(event.request).then(function(res) {
-          if(res) return res;
-        
-          return fetch(event.request);
-      })
-      
+  self.addEventListener('fetch', function(evt) {
+        // CODELAB: Add fetch event handler here.
+    if (evt.request.mode !== 'navigate') {
+        // Not a page navigation, bail.
+        return;
+    }
+    evt.respondWith(
+        fetch(evt.request)
+            .catch(() => {
+                return caches.open(CACHE_NAME)
+                    .then((cache) => {
+                    return cache.match('offline.html');
+                    });
+            })
     );
   });
