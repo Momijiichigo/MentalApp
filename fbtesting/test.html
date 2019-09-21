@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase.js"></script>
+        <title>Firebase example</title>
+    </head>
+    <body>
+        <h1>Firebase example</h1>
+        <pre id='data'></pre>
+        <script src="script.js"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+  // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyAbX1_62xZunY3XdmNEE1m4yANBusCuEtk",
+        authDomain: "mentalapp-5589c.firebaseapp.com",
+        databaseURL: "https://mentalapp-5589c.firebaseio.com",
+        projectId: "mentalapp-5589c",
+        storageBucket: "",
+        messagingSenderId: "815600527058",
+        appId: "1:815600527058:web:5c558d5b7a16e568552f0b"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var ref = firebase.database().ref();                           
+    ref.on("value", function(snapshot){
+    output.innerHTML = JSON.stringify(snapshot.val(), null, 2);
+    });
+    </script>
+    </body>
+</html>
