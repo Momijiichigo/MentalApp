@@ -1,11 +1,15 @@
 var CACHE_NAME = "0.0.1";
-
+const FILES_TO_CACHE = [
+    '/pwaTest.html',
+    'manifest.json'
+];
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME)
-    .then(function(cache) {      
-        return cache.addAll();      
+    .then((cache)=> {      
+        console.log('[ServiceWorker] Pre-caching offline page');
+        return cache.addAll(FILES_TO_CACHE);    
     })
   );
 });
