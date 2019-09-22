@@ -96,7 +96,7 @@
             }
             let searchDiscussion = (categs) =>{
                 //.doc(categs).collection("discuss").get()
-                return Promise(resolve=>{
+                return new Promise(resolve=>{
                     let result=[]//                                               | 
                     db.collection("Discussions").doc(categs).collection("discuss").get().then(discusses=>{
                         discusses.forEach(dis=>{
