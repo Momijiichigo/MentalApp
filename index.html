@@ -1,9 +1,24 @@
 <html>
     <head>
-        <link rel="stylesheet" href="main.css">
-        <title>Main Page</title>
+        <link rel="manifest" href="manifest.json">
+        <!-- android -->
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <!-- iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('./sw.js').then(function() {
+                    console.log('sucsessed');
+                }).catch(function(err) {
+                    console.log('error:', err);
+                });
+            }
+        </script>
+        <title>Mental</title>
     </head>
     <body>
-        <a href="pwaTest/pwaTest.html">pwa test here</a>
+        v0.0.6
+        <img src="./momiji.PNG" style="position:fixed;">
     </body>
 </html>
