@@ -3,6 +3,7 @@
         <meta charset="utf-8"/>
         <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.3.4/init.js"></script>
         <script>
             var firebaseConfig = {
                 apiKey: "AIzaSyAbX1_62xZunY3XdmNEE1m4yANBusCuEtk",
@@ -67,7 +68,7 @@
                 })
                 return corrCategs;
             }
-
+            //postingDiscuss("sleep",{title:"hello",maintext:"hi"} ,5555);
             let postingDiscuss = (categStr,{title,maintext},userId) =>{
                 db.collection("Discussions").doc(categStr).collection("discuss").add({
                     title:title,
