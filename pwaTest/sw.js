@@ -1,4 +1,4 @@
-var CACHE_NAME = "0.0.1";
+var CACHE_NAME = "0.0.2";
 const FILES_TO_CACHE = [
     './',
     './pwaTest.html',
@@ -16,6 +16,7 @@ self.addEventListener('install', function(event) {
   );
 });
 self.addEventListener('activate', function(event) {  
+  console.log(caches)
     event.waitUntil(
         caches.keys().then((keyList) => {
             return Promise.all(keyList.map((key) => {
