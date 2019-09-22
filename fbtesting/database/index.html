@@ -58,6 +58,7 @@
                     });
                 }); 
             }
+            //run above func before running search()
             //below returns a list of corresponding solutions.
             let search = (searchStr) =>{
                 corrCategs=[];
@@ -94,7 +95,7 @@
                 let result=[]//                                               | 
                 db.collection("Discussions").doc(categs).collection("discuss").get().then(discusses=>{
                     discusses.forEach(dis=>{
-                        //data = result[0].src()
+                        //data = result[0].src(), not result[0].src .
                         result.push({id:dis.id,src:dis.data})
                     })
                 })
