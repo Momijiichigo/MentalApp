@@ -1,6 +1,5 @@
-var CACHE_NAME = "0.0.2";
+var CACHE_NAME = "0.0.3";
 const FILES_TO_CACHE = [
-    './',
     './pwaTest.html',
     './manifest.json',
     './momiji.PNG'
