@@ -19,8 +19,6 @@ document.querySelector('#sign-in').addEventListener('click', function(e) {
             };
         });
         document.getElementById("demo").innerHTML = "Created user with email " + firebase.auth().currentUser['email'];    
-
-    var errorMessage = error.message;    
 };
     
     var user = firebase.auth().currentUser;
