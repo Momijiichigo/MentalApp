@@ -1,6 +1,7 @@
 <html>
     <head>
-        <link rel="manifest" href="manifest.json">
+        <link rel="stylesheet" href="main.css">
+        <link rel="manifest" href="manifest.jso sn">
         <!-- android -->
         <meta name="mobile-web-app-capable" content="yes">
 
@@ -18,7 +19,19 @@
         <title>Mental</title>
     </head>
     <body>
-        v0.0.6
-        <img src="./momiji.PNG" style="position:fixed;">
-    </body>
+        
+            <dialog id="favDialog">
+                    <form method="dialog">
+                      <p><label>Sorry we still need a preparation</label></p>
+                      <menu>
+                        <button>Cancel</button>
+                      </menu>
+                    </form>
+                  </dialog>
+    <script>
+        var favDialog = document.getElementById('favDialog');
+        favDialog.showModal();
+        if(favDialog.returnValue==="Cancel")location.href="https://github.com/Momijiichigo/MentalApp"
+    </script>
+                </body>
 </html>
