@@ -10,7 +10,6 @@
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('./sw.js').then(function() {
                     console.log('sucsessed');
-                    alert("installing")
                 }).catch(function(err) {
                     console.log('error:', err);
                 });
@@ -19,6 +18,6 @@
         <title>PWA Test Page</title>
     </head>
     <body>
-        <img src="./momiji.PNG">
+        <img src="./momiji.PNG" style="position:fixed;">
     </body>
 </html>
