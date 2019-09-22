@@ -2,7 +2,8 @@ var CACHE_NAME = "0.0.1";
 const FILES_TO_CACHE = [
     './pwaTest.html',
     './manifest.json',
-    './momiji.PNG'
+    './momiji.PNG',
+    './sw.js'
 ];
 
 self.addEventListener('install', function(event) {
@@ -10,8 +11,7 @@ self.addEventListener('install', function(event) {
     caches.open(CACHE_NAME)
     .then((cache)=> {      
         console.log('[ServiceWorker] Pre-caching offline page');
-        alert(FILES_TO_CACHE);
-        return cache.addAll(FILES_TO_CACHE);    
+        return cache.addAll(["https://momijiichigo.github.io/MentalApp/pwaTest/"]);    
     })
   );
 });
