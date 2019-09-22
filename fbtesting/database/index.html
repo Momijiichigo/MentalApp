@@ -68,9 +68,7 @@
                 })
                 return corrCategs;
             }
-            let getAllDiscuss = (categ) =>{
-                db.collection("Discussions").doc(categoryName).collection("discuss")
-            }
+            
             //postingDiscuss("sleep",{title:"hello",maintext:"hi"} ,5555);
             let postingDiscuss = (categStr,{title,maintext},userId) =>{
                 db.collection("Discussions").doc(categStr).collection("discuss").add({
@@ -87,12 +85,15 @@
                 }, { merge: true })
                 //and send to posted guy
             }
-            let postingSolution = (sol,msg,discussRef) =>{
+            let postingSolution = (sol,msg,discussRef,categ) =>{
                 discussRef.set({
                     solution:sol,
                     meg:msg
                 }, { merge: true })
                 //and send to posted guy
+
+                //and send it to solution database
+                db.collection("Posts").doc()
             }
             let searchDiscussion = (categs) =>{
                 //.doc(categs).collection("discuss").get()
