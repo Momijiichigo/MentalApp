@@ -96,16 +96,16 @@
             }
             let searchDiscussion = (categs) =>{
                 //.doc(categs).collection("discuss").get()
-                return new Promise(resolve=>{
-                    let result=[]//                                               | 
-                    db.collection("Discussions").doc(categs).collection("discuss").get().then(discusses=>{
-                        discusses.forEach(dis=>{
-                            //data = result[0].src(), not result[0].src .
-                            result.push({id:dis.id,src:dis.data})
-                            console.log(dis.id)
-                        })
+                
+                let result=[]//                                               | 
+                db.collection("Discussions").doc(categs).collection("discuss").get().then(discusses=>{
+                    discusses.forEach(dis=>{
+                        //
+                        result.push({id:dis.id,src:dis.data()})
+                        console.log(dis.id)
                     })
-                    resolve(result)
+                })
+                
                 })
             }
             //discussList = searchDiscussion("sleep")
