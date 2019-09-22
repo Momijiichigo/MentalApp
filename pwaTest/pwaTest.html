@@ -1,6 +1,11 @@
 <html>
     <head>
         <link rel="manifest" href="manifest.json">
+                <!-- android -->
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <!-- iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
         <script>
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('sw.js').then(function() {
