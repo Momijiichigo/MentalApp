@@ -102,6 +102,7 @@
                         discusses.forEach(dis=>{
                             //data = result[0].src(), not result[0].src .
                             result.push({id:dis.id,src:dis.data})
+                            console.log(dis.id)
                         })
                     })
                     resolve(result)
