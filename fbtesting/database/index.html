@@ -66,21 +66,32 @@
                 })
                 return corrCategs;
             }
-            let postingNewCategory = () =>{
-                db.collection("Discussions")
+
+            let postingDiscuss = (categStr,{title,maintext},userId) =>{
+                db.collection("Discussions").doc(categStr).collection("discuss").add({
+                    title:title,
+                    maintext:maintext,
+                    postedGuy:userId
+                }).then(id=>{return id})
             }
-            let postingDiscuss = (categStr,{title,maintext}) =>{
-                db.collection("Discussions").doc(categStr).add({
-                    title: title,
-                    main: maintext,
-                    solved: false,
-                    msg:[],
-                    sols:[]
-                })
+            //above returns an idOfDiscussing
+            //discussRef is db.collection("Discussions").doc(categoryName).collection("discuss").doc(idOfDiscussing)
+            let postingMessage = (msg,discussRef) =>{
+                discussRef.set({
+                    message:msg
+                }, { merge: true })
+                //and send to posted guy
+            }
+            let postingSolution = (sol,msg,discussRef) =>{
+                discussRef.set({
+                    solution:sol,
+                    meg:msg
+                }, { merge: true })
+                //and send to posted guy
             }
             let searchDiscussion = (categs) =>{
                 //.doc(categs).collection("discuss").get()
-                let result=[]
+                let result=[]//                                               | 
                 db.collection("Discussions").doc(categs).collection("discuss").get().then(discusses=>{
                     discusses.forEach(dis=>{
                         //data = result[0].src()
@@ -89,6 +100,9 @@
                 })
                 return result;
             }
+            //discussList = searchDiscussion("sleep")
+            //discussList[0].src();  to see data
+            //<"Discussions">-[name of category]-<"discuss">-
         </script>
     </body>
 </html>
