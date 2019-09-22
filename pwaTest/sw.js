@@ -1,15 +1,16 @@
-var CACHE_NAME = "0.0.1";
+var CACHE_NAME = "0.0.7";
 const FILES_TO_CACHE = [
     './pwaTest.html',
-    './manifest.json'
+    './manifest.json',
+    './momiji.PNG'
 ];
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open(CACHE_NAME)
-    .then((cache)=> {      
+    .then((cache)=> {
         console.log('[ServiceWorker] Pre-caching offline page');
-        return cache.addAll(FILES_TO_CACHE);    
+        return cache.addAll(FILES_TO_CACHE);
     })
   );
 });
@@ -27,18 +28,10 @@ self.addEventListener('activate', function(event) {
     );
   });
   self.addEventListener('fetch', function(evt) {
-        // CODELAB: Add fetch event handler here.
-    if (evt.request.mode !== 'navigate') {
-        // Not a page navigation, bail.
-        return;
-    }
     evt.respondWith(
-        fetch(evt.request)
-            .catch(() => {
-                return caches.open(CACHE_NAME)
-                    .then((cache) => {
-                    return cache.match('offline.html');
-                    });
-            })
+        caches.match(evt.request).then(res=>{
+          if(res)return res;
+          return fetch(evt.request);
+        })
     );
   });

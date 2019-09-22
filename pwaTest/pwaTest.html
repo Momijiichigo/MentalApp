@@ -1,9 +1,14 @@
 <html>
     <head>
         <link rel="manifest" href="manifest.json">
+        <!-- android -->
+        <meta name="mobile-web-app-capable" content="yes">
+
+        <!-- iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
         <script>
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js').then(function() {
+                navigator.serviceWorker.register('./sw.js').then(function() {
                     console.log('sucsessed');
                 }).catch(function(err) {
                     console.log('error:', err);
@@ -13,6 +18,7 @@
         <title>PWA Test Page</title>
     </head>
     <body>
-        <img src="./momiji.PNG">
+        v0.0.6
+        <img src="./momiji.PNG" style="position:fixed;">
     </body>
 </html>

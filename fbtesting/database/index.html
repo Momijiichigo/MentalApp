@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js"></script>
+
+        <script>
+            var firebaseConfig = {
+                apiKey: "AIzaSyAbX1_62xZunY3XdmNEE1m4yANBusCuEtk",
+                authDomain: "mentalapp-5589c.firebaseapp.com",
+                databaseURL: "https://mentalapp-5589c.firebaseio.com",
+                projectId: "mentalapp-5589c",
+                storageBucket: "",
+                messagingSenderId: "815600527058",
+                appId: "1:815600527058:web:5c558d5b7a16e568552f0b"
+            };
+            firebase.initializeApp(firebaseConfig);
+            var db = firebase.firestore();
+        </script>
+        <title>Firebase database example</title>
+    </head>
+    <body>
+        <script>
+            
+            /*
+            --------
+            below is how to write data to database
+            ---------
+            db.collection("users").add({
+                first: "Ada",
+                last: "Lovelace",
+                born: 1815
+            })
+            .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+            ----------
+            sansyou:
+            ------
+            var alovelaceDocumentRef = db.doc('users/alovelace');
+            ----------
+            below is how to get data
+            ---------
+            db.collection("users").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    console.log(`${doc.id} => ${doc.data()}`);
+                });
+            });
+            */
+            let AllCategs=[];
+            let bringAllCategories = () =>{
+                    db.collection("Posts").get().then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        AllCategs.push(doc.id);
+                        console.log(`${doc.id} => ${doc.data()}`);
+                    });
+                }); 
+            }
+            //run above func before running search()
+            //below returns a list of corresponding solutions.
+            let search = (searchStr) =>{
+                corrCategs=[];
+                AllCategs.forEach((catStr)=>{
+                    if(catStr.match(new RegExp(searchStr, "i")))corrCategs.push(catStr);
+                })
+                return corrCategs;
+            }
+            let getAllDiscuss = (categ) =>{
+                db.collection("Discussions").doc(categoryName).collection("discuss")
+            }
+            //postingDiscuss("sleep",{title:"hello",maintext:"hi"} ,5555);
+            let postingDiscuss = (categStr,{title,maintext},userId) =>{
+                db.collection("Discussions").doc(categStr).collection("discuss").add({
+                    title:title,
+                    maintext:maintext,
+                    postedGuy:userId
+                }).then(id=>{return id})
+            }
+            //above returns an idOfDiscussing
+            //discussRef is db.collection("Discussions").doc(categoryName).collection("discuss").doc(idOfDiscussing)
+            let postingMessage = (msg,discussRef) =>{
+                discussRef.set({
+                    message:msg
+                }, { merge: true })
+                //and send to posted guy
+            }
+            let postingSolution = (sol,msg,discussRef) =>{
+                discussRef.set({
+                    solution:sol,
+                    meg:msg
+                }, { merge: true })
+                //and send to posted guy
+            }
+            let searchDiscussion = (categs) =>{
+                //.doc(categs).collection("discuss").get()
+                
+                let result=[]//                                               | 
+                db.collection("Discussions").doc(categs).collection("discuss").get().then(discusses=>{
+                    discusses.forEach(dis=>{
+                        //
+                        result.push({id:dis.id,src:dis.data()})
+                        console.log(dis.id)
+                    })
+                })
+                return result;
+                
+                
+            }
+            //discussList = searchDiscussion("sleep")
+            //discussList[0].src();  to see data ... try running console.log(discussList[0].src())
+            //<"Discussions">-[name of category]-<"discuss">-
+        </script>
+    </body>
+</html>
