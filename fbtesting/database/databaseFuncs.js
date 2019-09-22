@@ -3,7 +3,7 @@ let bringAllCategories = () =>{
         db.collection("Posts").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             AllCategs.push(doc.id);
-            //console.log(`${doc.id} => ${doc.data()}`);
+            console.log(`${doc.id} => ${doc.data()}`);
         });
     }); 
 }
@@ -16,7 +16,7 @@ let search = (searchStr) =>{
     })
     return corrCategs;
 }
-
+//postingDiscuss("sleep",{title:"hello",maintext:"hi"} ,5555);
 let postingDiscuss = (categStr,{title,maintext},userId) =>{
     db.collection("Discussions").doc(categStr).collection("discuss").add({
         title:title,
@@ -50,3 +50,5 @@ let searchDiscussion = (categs) =>{
     })
     return result;
 }
+//discussList = searchDiscussion("sleep")
+//discussList[0].src();  to see data ... try running console.log(discussList[0].src())

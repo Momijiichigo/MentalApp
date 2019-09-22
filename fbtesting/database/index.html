@@ -3,7 +3,7 @@
         <meta charset="utf-8"/>
         <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/6.3.4/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/6.3.4/init.js"></script>
+
         <script>
             var firebaseConfig = {
                 apiKey: "AIzaSyAbX1_62xZunY3XdmNEE1m4yANBusCuEtk",
@@ -68,6 +68,9 @@
                 })
                 return corrCategs;
             }
+            let getAllDiscuss = (categ) =>{
+                db.collection("Discussions").doc(categoryName).collection("discuss")
+            }
             //postingDiscuss("sleep",{title:"hello",maintext:"hi"} ,5555);
             let postingDiscuss = (categStr,{title,maintext},userId) =>{
                 db.collection("Discussions").doc(categStr).collection("discuss").add({
@@ -93,14 +96,16 @@
             }
             let searchDiscussion = (categs) =>{
                 //.doc(categs).collection("discuss").get()
-                let result=[]//                                               | 
-                db.collection("Discussions").doc(categs).collection("discuss").get().then(discusses=>{
-                    discusses.forEach(dis=>{
-                        //data = result[0].src(), not result[0].src .
-                        result.push({id:dis.id,src:dis.data})
+                return Promise(resolve=>{
+                    let result=[]//                                               | 
+                    db.collection("Discussions").doc(categs).collection("discuss").get().then(discusses=>{
+                        discusses.forEach(dis=>{
+                            //data = result[0].src(), not result[0].src .
+                            result.push({id:dis.id,src:dis.data})
+                        })
                     })
+                    resolve(result)
                 })
-                return result;
             }
             //discussList = searchDiscussion("sleep")
             //discussList[0].src();  to see data ... try running console.log(discussList[0].src())
