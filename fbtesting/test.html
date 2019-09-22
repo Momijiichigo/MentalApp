@@ -1,67 +1,39 @@
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase.js"></script>
-        <title>Firebase example</title>
-    </head>
-    <body>
-        <form>
-                <div>
-                    <input id="email" type="text" placeholder="Email...">
-                </div>
-                <div>
-                    <input id="password" type="password" placeholder="Password...">
-                </div>
-                <div>
-                    <button id="sign-in">Sign In/Register</button>
-                    <button id="sign-out">Sign Out</button>
-                </div>
-        </form>
-        <h1>Firebase example</h1>
-        <pre id='data'></pre>
-
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://www.gstatic.com/firebasejs/6.6.2/firebase.js"></script>
+    <title>Firebase example</title>
+  </head>
+  <body>
+    <form>
+      <div>
+        <input id="email" type="text" placeholder="Email..." />
+      </div>
+      <div>
+        <input id="password" type="password" placeholder="Password..." />
+      </div>
+      <div>
+        <button id="sign-in">Sign In/Register</button>
+        <button id="sign-out">Sign Out</button>
+      </div>
+      <div>
+          <button id="sign-google">Sign In with Google</button>
+      </div>
+    </form>
     <script>
-    var firebaseConfig = {
-        apiKey: "AIzaSyAbX1_62xZunY3XdmNEE1m4yANBusCuEtk",
-        authDomain: "mentalapp-5589c.firebaseapp.com",
-        databaseURL: "https://mentalapp-5589c.firebaseio.com",
-        projectId: "mentalapp-5589c",
-        storageBucket: "",
-        messagingSenderId: "815600527058",
-        appId: "1:815600527058:web:5c558d5b7a16e568552f0b"
-    };
-    firebase.initializeApp(firebaseConfig);
+        var firebaseConfig = {
+            apiKey: "AIzaSyAbX1_62xZunY3XdmNEE1m4yANBusCuEtk",
+            authDomain: "mentalapp-5589c.firebaseapp.com",
+            databaseURL: "https://mentalapp-5589c.firebaseio.com",
+            projectId: "mentalapp-5589c",
+            storageBucket: "",
+            messagingSenderId: "815600527058",
+            appId: "1:815600527058:web:5c558d5b7a16e568552f0b"
+        };
+        firebase.initializeApp(firebaseConfig);
     </script>
-    <script>    
-        document.querySelector('#sign-in').addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            var email = document.querySelector('#email').value;
-            console.log(email);
-            var password = document.querySelector('#password').value
-            console.log(password);
-            firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            });
-            var user = firebase.auth().currentUser;
-            console.log("signed in");
-              
-        });
-            
-        document.querySelector('#sign-out').addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            firebase.auth().signOut();
-        });
-        firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            console.log("signed in");
-        } else {
-            console.log("signed out");
-        // No user is signed in.
-        }
-});
-    </script>
-    </body>
+    <script src="signin.js"></script>
+    <script src="script.js"></script>
+    <p id="demo"></p>
+  </body>
 </html>
