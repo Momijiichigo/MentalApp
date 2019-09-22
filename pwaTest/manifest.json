@@ -3,6 +3,6 @@
     "name": "PWA TEST",
     "start_url": "pwaTest.html",
     "display": "standalone",
-    "background_color": "#000000",
-    "theme_color": "#000000"
+    "background_color": "#aaaaaa",
+    "theme_color": "#dddddd"
 }
