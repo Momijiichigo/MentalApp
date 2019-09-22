@@ -11,7 +11,7 @@ self.addEventListener('install', function(event) {
     caches.open(CACHE_NAME)
     .then((cache)=> {      
         console.log('[ServiceWorker] Pre-caching offline page');
-        return cache.addAll(["https://momijiichigo.github.io/MentalApp/pwaTest/"]);    
+        return cache.addAll(["/momijiichigo.github.io/MentalApp/pwaTest/"]);    
     })
   );
 });
