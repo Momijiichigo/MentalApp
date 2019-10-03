@@ -4,7 +4,7 @@
     "start_url": "./pwaTest.html",
     "display": "standalone",
     "background_color": "#aaaaaa",
-    "theme_color": "#dddddd",
+    "theme_color": "#dd5511",
     "icons": [
         {
             "src": "./drawing.svg",
