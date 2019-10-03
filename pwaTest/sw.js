@@ -1,4 +1,4 @@
-var CACHE_NAME = "0.0.8";
+var CACHE_NAME = "0.0.9";
 const FILES_TO_CACHE = [
     './pwaTest.html',
     './manifest.json',
