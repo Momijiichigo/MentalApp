@@ -1,8 +1,9 @@
-var CACHE_NAME = "0.0.7";
+var CACHE_NAME = "0.0.8";
 const FILES_TO_CACHE = [
     './pwaTest.html',
     './manifest.json',
-    './momiji.PNG'
+    './momiji.PNG',
+    './drawing.svg'
 ];
 
 self.addEventListener('install', function(event) {
